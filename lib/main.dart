@@ -1,6 +1,10 @@
+import 'package:f1_1/test_veri.dart';
+
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+
+
 
 void main() => runApp(BilgiTesti());
 
@@ -29,14 +33,7 @@ class SoruSayfasi extends StatefulWidget {
 class _SoruSayfasiState extends State<SoruSayfasi> {
   List<Widget> secimler = [];
 
-  List<Soru> soruBankasi = [
-    Soru("Titanic gelmiş geçmiş en büyük gemidir", false),
-    Soru("Dünyadaki tavuk sayısı insan sayısından fazladır", true),
-    Soru("Kelebeklerin ömrü bir gündür", false),
-    Soru("Dünya düzdür", false),
-    Soru("Kaju fıstığı aslında bir meyvenin sapıdır", true),
-    Soru("Fatih Sultan Mehmet hiç patates yememiştir", true),
-  ];
+  TestVeri test_1 = TestVeri();
 
   int soruIndex = 0;
 
@@ -52,7 +49,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                soruBankasi[soruIndex].soruMetni,
+                 test_1.soruBankasi[soruIndex].soruMetni,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -91,7 +88,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        bool dogruYanit = soruBankasi[soruIndex].soruYaniti;
+                        bool dogruYanit =  test_1.soruBankasi[soruIndex].soruYaniti;
                         setState(() {
                           if (dogruYanit == false) {
                             secimler.add(KDogruIconu);
@@ -115,7 +112,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       color: Colors.green[400],
                       child: Icon(Icons.thumb_up, size: 40.0),
                       onPressed: () {
-                        bool dogruYanit = soruBankasi[soruIndex].soruYaniti;
+                        bool dogruYanit =  test_1.soruBankasi[soruIndex].soruYaniti;
                         setState(() {
                           if (dogruYanit == true) {
                             secimler.add(KDogruIconu);
@@ -137,8 +134,4 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
   }
 }
 
-class Soru {
-  String soruMetni;
-  bool soruYaniti;
-  Soru(@required this.soruMetni, this.soruYaniti);
-}
+
