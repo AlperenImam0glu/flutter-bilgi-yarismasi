@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:f1_1/soru.dart';
 
 class TestVeri {
-  int _soruIndex=0;
+  int _soruIndex = 0;
   List<Soru> _soruBankasi = [
     Soru("Titanic gelmiş geçmiş en büyük gemidir", false),
     Soru("Dünyadaki tavuk sayısı insan sayısından fazladır", true),
@@ -23,5 +25,17 @@ class TestVeri {
     if (_soruIndex < _soruBankasi.length - 1) {
       _soruIndex++;
     }
+  }
+
+  bool testBittiMi() {
+    if (_soruIndex + 1 >= _soruBankasi.length)
+      return true;
+    else {
+      return false;
+    }
+  }
+
+  void testiSifirla() {
+    _soruIndex = 0;
   }
 }
