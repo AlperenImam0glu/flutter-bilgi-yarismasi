@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-
-
 void main() => runApp(BilgiTesti());
 
 class BilgiTesti extends StatelessWidget {
@@ -35,8 +33,6 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
 
   TestVeri test_1 = TestVeri();
 
-  int soruIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,7 +45,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                 test_1.soruBankasi[soruIndex].soruMetni,
+                test_1.getSoruMetni(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -88,16 +84,12 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        bool dogruYanit =  test_1.soruBankasi[soruIndex].soruYaniti;
                         setState(() {
-                          if (dogruYanit == false) {
-                            secimler.add(KDogruIconu);
-                          } else {
-                            secimler.add(KYanlisIconu);
-                          }
+                          test_1.getSoruYaniti() == false
+                              ? secimler.add(KDogruIconu)
+                              : secimler.add(KYanlisIconu);
 
-                          soruIndex++;
-                          // secimler.add(KYanlisIconu);
+                          test_1.sonrakiSoru();
                         });
                       },
                     ),
@@ -112,14 +104,12 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       color: Colors.green[400],
                       child: Icon(Icons.thumb_up, size: 40.0),
                       onPressed: () {
-                        bool dogruYanit =  test_1.soruBankasi[soruIndex].soruYaniti;
                         setState(() {
-                          if (dogruYanit == true) {
-                            secimler.add(KDogruIconu);
-                          } else {
-                            secimler.add(KYanlisIconu);
-                          }
-                          soruIndex++;
+                          test_1.getSoruYaniti() == true
+                              ? secimler.add(KDogruIconu)
+                              : secimler.add(KYanlisIconu);
+
+                          test_1.sonrakiSoru();
                         });
                       },
                     ),
@@ -133,5 +123,3 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
     );
   }
 }
-
-
